@@ -12,7 +12,7 @@ export async function POST(request) {
 
     await resend.emails.send({
       from: 'APW-TECH Web <onboarding@resend.dev>',
-      to: 'michal.mikula1@gmail.com',
+      to: 'apwtech@apwtech.sk',
       replyTo: email,
       subject: `Správa z webu od ${name}${company ? ` (${company})` : ''}`,
       text: `Meno: ${name}\nEmail: ${email}${company ? `\nSpoločnosť: ${company}` : ''}\n\nSpráva:\n${message}`,
