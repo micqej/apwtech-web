@@ -17,7 +17,7 @@
       font-family: 'Inter', sans-serif;
       color: var(--text);
       overflow-x: hidden;
-      background-color: #f0f4fa;
+      background-color: #e8e8ea;
       background-image: url('/bg.png');
       background-repeat: repeat;
       background-size: 900px auto;
@@ -272,8 +272,8 @@
 
     /* ── ABOUT ── */
     #about {
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: blur(2px);
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(1px);
     }
     .about-grid {
       display: grid;
@@ -334,8 +334,8 @@
 
     /* ── SERVICES ── */
     #services {
-      background: rgba(240,244,250,0.82);
-      backdrop-filter: blur(2px);
+      background: rgba(232,232,234,0.72);
+      backdrop-filter: blur(1px);
     }
     .services-grid {
       display: grid;
