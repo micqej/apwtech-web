@@ -35,20 +35,56 @@ const interactionScript = `
     syncLanguageFormState(lang);
   };
 
-  window.handleForm = function handleForm(e) {
+  window.handleForm = async function handleForm(e) {
     e.preventDefault();
+    const form = e.target;
     const btn =
-      Array.from(e.target.querySelectorAll('.btn-submit')).find(
+      Array.from(form.querySelectorAll('.btn-submit')).find(
         (candidate) => window.getComputedStyle(candidate).display !== 'none'
-      ) || e.target.querySelector('.btn-submit');
+      ) || form.querySelector('.btn-submit');
     if (!btn) return;
-    const orig = btn.textContent;
-    btn.textContent = document.body.className.includes('en') ? 'Sent!' : 'Odoslané!';
-    btn.style.background = '#27ae60';
-    window.setTimeout(() => {
-      btn.textContent = orig;
-      btn.style.background = '';
-    }, 3000);
+
+    const isEn = document.body.className.includes('en');
+    const inputs = form.querySelectorAll('input, textarea');
+    const [nameEl, emailEl, companyEl] = inputs;
+    const messageEl = Array.from(form.querySelectorAll('textarea')).find(
+      (el) => window.getComputedStyle(el).display !== 'none'
+    );
+
+    btn.disabled = true;
+    btn.textContent = isEn ? 'Sending…' : 'Odosielam…';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: nameEl?.value || '',
+          email: emailEl?.value || '',
+          company: companyEl?.value || '',
+          message: messageEl?.value || '',
+        }),
+      });
+
+      const orig = btn.textContent;
+      if (res.ok) {
+        btn.textContent = isEn ? 'Sent! ✓' : 'Odoslané! ✓';
+        btn.style.background = '#27ae60';
+        form.reset();
+      } else {
+        btn.textContent = isEn ? 'Error — try again' : 'Chyba — skúste znova';
+        btn.style.background = '#e74c3c';
+      }
+      window.setTimeout(() => {
+        btn.textContent = isEn ? (orig.includes('Send') ? orig : 'Send Message') : 'Odoslať správu';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    } catch {
+      btn.textContent = isEn ? 'Error — try again' : 'Chyba — skúste znova';
+      btn.style.background = '#e74c3c';
+      window.setTimeout(() => { btn.style.background = ''; btn.disabled = false; }, 3000);
+    }
   };
 
   const setupNavHighlight = () => {
