@@ -50,21 +50,10 @@
       gap: 12px;
       text-decoration: none;
     }
-    .nav-logo-text {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: 1px;
-      line-height: 1;
-    }
-    .nav-logo-swoosh {
-      display: block;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--blue-light), transparent);
-      margin-top: 2px;
-      border-radius: 2px;
+    .nav-logo-img {
+      height: 44px;
+      width: auto;
+      filter: brightness(0) invert(1);
     }
     .nav-links {
       display: flex;
@@ -150,14 +139,12 @@
       background: var(--blue-light);
       border-radius: 50%;
     }
-    .hero-logo-main {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(52px, 8vw, 96px);
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: 2px;
-      line-height: 1;
-      margin-bottom: 4px;
+    .hero-logo-img {
+      height: clamp(60px, 10vw, 110px);
+      width: auto;
+      filter: brightness(0) invert(1);
+      margin-bottom: 12px;
+      display: block;
     }
     .hero-swoosh {
       width: 280px;
