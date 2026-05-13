@@ -51,7 +51,7 @@
       text-decoration: none;
     }
     .nav-logo-img {
-      height: 44px;
+      height: 38px;
       width: auto;
       filter: brightness(0) invert(1);
     }
@@ -140,8 +140,8 @@
       border-radius: 50%;
     }
     .hero-logo-img {
-      height: clamp(60px, 10vw, 110px);
-      width: auto;
+      width: clamp(320px, 45vw, 640px);
+      height: auto;
       filter: brightness(0) invert(1);
       margin-bottom: 12px;
       display: block;
